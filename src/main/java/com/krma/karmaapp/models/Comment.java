@@ -6,17 +6,28 @@
 package com.krma.karmaapp.models;
 
 import java.sql.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author ericknavarro
  */
+@Entity
 public class Comment {
-    
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
+    @Column
     private Post post;
+    @Column
     private User autor;
+    @Column
     private String contenido;
+    @Column
     private Date fecha;
 
     public Comment() {

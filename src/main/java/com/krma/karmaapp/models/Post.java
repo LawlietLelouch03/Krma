@@ -7,60 +7,57 @@ package com.krma.karmaapp.models;
 
 import java.sql.Date;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author ericknavarro
  */
+@Entity
 public class Post {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column
     private String titulo;
+    @Column
     private String descripcion;
-    private User owner;
+    /*@Column
+    private User owner*/
+    @Column
     private int putnos;
+    @Column
     private String estado;
+    @Column
     private String ubicacion;
+    @Column
     private String dificultad; //TODO: Definir dificultades
+    /*@Column
     private List<User> postulantes;
-    private List<Comment> comentarios;
+    @Column
+    private List<Comment> comentarios;*/
+    @Column
     private Date fecha;
-    private Date dateLine;
+    @Column
+    private Date deadLine;
+    @Column
     private String tiempo; //TODO: Definir tipo de dato de timpo
+    @Column
     private String tags; //TODO: Definir tags
 
     public Post() {
     }
 
-    public Post(int id, String titulo, String descripcion, User owner, int putnos, String estado, String ubicacion, String dificultad, List<User> postulantes, List<Comment> comentarios, Date fecha, Date dateLine, String tiempo, String tags) {
-        this.id = id;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.owner = owner;
-        this.putnos = putnos;
-        this.estado = estado;
-        this.ubicacion = ubicacion;
-        this.dificultad = dificultad;
-        this.postulantes = postulantes;
-        this.comentarios = comentarios;
-        this.fecha = fecha;
-        this.dateLine = dateLine;
-        this.tiempo = tiempo;
-        this.tags = tags;
-    }
-
     /**
-     * @return the comentarios
+     * @return the deadLine
      */
-    public List<Comment> getComentarios() {
-        return comentarios;
-    }
-
-    /**
-     * @return the dateLine
-     */
-    public Date getDateLine() {
-        return dateLine;
+    public Date getDeadLine() {
+        return deadLine;
     }
 
     /**
@@ -99,20 +96,6 @@ public class Post {
     }
 
     /**
-     * @return the owner
-     */
-    public User getOwner() {
-        return owner;
-    }
-
-    /**
-     * @return the postulantes
-     */
-    public List<User> getPostulantes() {
-        return postulantes;
-    }
-
-    /**
      * @return the putnos
      */
     public int getPutnos() {
@@ -148,17 +131,10 @@ public class Post {
     }
 
     /**
-     * @param comentarios the comentarios to set
+     * @param deadLine the deadLine to set
      */
-    public void setComentarios(List<Comment> comentarios) {
-        this.comentarios = comentarios;
-    }
-
-    /**
-     * @param dateLine the dateLine to set
-     */
-    public void setDateLine(Date dateLine) {
-        this.dateLine = dateLine;
+    public void setDeadLine(Date deadLine) {
+        this.deadLine = deadLine;
     }
 
     /**
@@ -197,20 +173,6 @@ public class Post {
     }
 
     /**
-     * @param owner the owner to set
-     */
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-    /**
-     * @param postulantes the postulantes to set
-     */
-    public void setPostulantes(List<User> postulantes) {
-        this.postulantes = postulantes;
-    }
-
-    /**
      * @param putnos the putnos to set
      */
     public void setPutnos(int putnos) {
@@ -244,7 +206,7 @@ public class Post {
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
-    
+
     
     
 }

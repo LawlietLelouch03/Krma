@@ -7,40 +7,53 @@ package com.krma.karmaapp.models;
 
 import java.sql.Date;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
- * @author ericknavarro
+ * @author ericknavarro ELLLLLLLLLL PROYECTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
  */
+@Entity
 public class User {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column
     private String nombre;
+    @Column
     private String userName;
+    @Column
     private String password;
+    @Column
+    private String email;
+    @Column
     private String profilePictureUrl;
+    @Column
     private int puntos;
+    @Column
     private String rango; //TODO: Definir tipo de rangos
+    /*@Column
     private List<Post> posts;
+    @Column
     private List<User> follows;
-    private List<User> followers;
+    @Column
+    private List<User> followers;*/
+    @Column
     private Date fecha;
 
     public User() {
     }
 
-    public User(int id, String nombre, String userName, String password, String profilePictureUrl, int puntos, String rango, List<Post> posts, List<User> follows, List<User> followers, Date fecha) {
-        this.id = id;
-        this.nombre = nombre;
-        this.userName = userName;
-        this.password = password;
-        this.profilePictureUrl = profilePictureUrl;
-        this.puntos = puntos;
-        this.rango = rango;
-        this.posts = posts;
-        this.follows = follows;
-        this.followers = followers;
-        this.fecha = fecha;
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
     }
 
     /**
@@ -51,31 +64,10 @@ public class User {
     }
 
     /**
-     * @return the followers
-     */
-    public List<User> getFollowers() {
-        return followers;
-    }
-
-    /**
-     * @return the follows
-     */
-    public List<User> getFollows() {
-        return follows;
-    }
-
-    /**
      * @return the id
      */
     public int getId() {
         return id;
-    }
-
-    /**
-     * @return the imgPerfilUrl
-     */
-    public String getProfilePictureUrl() {
-        return profilePictureUrl;
     }
 
     /**
@@ -93,10 +85,10 @@ public class User {
     }
 
     /**
-     * @return the posts
+     * @return the profilePictureUrl
      */
-    public List<Post> getPosts() {
-        return posts;
+    public String getProfilePictureUrl() {
+        return profilePictureUrl;
     }
 
     /**
@@ -121,6 +113,13 @@ public class User {
     }
 
     /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
      * @param fecha the fecha to set
      */
     public void setFecha(Date fecha) {
@@ -128,31 +127,10 @@ public class User {
     }
 
     /**
-     * @param followers the followers to set
-     */
-    public void setFollowers(List<User> followers) {
-        this.followers = followers;
-    }
-
-    /**
-     * @param follows the follows to set
-     */
-    public void setFollows(List<User> follows) {
-        this.follows = follows;
-    }
-
-    /**
      * @param id the id to set
      */
     public void setId(int id) {
         this.id = id;
-    }
-
-    /**
-     * @param profilePictureUrl the imgPerfilUrl to set
-     */
-    public void setProfilePictureUrl(String profilePictureUrl) {
-        this.profilePictureUrl = profilePictureUrl;
     }
 
     /**
@@ -170,10 +148,10 @@ public class User {
     }
 
     /**
-     * @param posts the posts to set
+     * @param profilePictureUrl the profilePictureUrl to set
      */
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
+    public void setProfilePictureUrl(String profilePictureUrl) {
+        this.profilePictureUrl = profilePictureUrl;
     }
 
     /**
@@ -198,5 +176,5 @@ public class User {
     }
     
     
-    
+
 }

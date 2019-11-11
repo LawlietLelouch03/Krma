@@ -5,10 +5,13 @@
  */
 package com.krma.karmaapp.resources;
 
+import javax.ws.rs.Path;
+
 /**
  *
  * @author ericknavarro
  */
+@Path("krma") //TODO: Cambiar nombre al deseado
 public class krmaRecurso {
     
 }

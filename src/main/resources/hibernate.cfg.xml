@@ -6,9 +6,9 @@
 	
         <!-- JDBC properties -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/jugateria</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password">....</property>
+        <property name="connection.url">jdbc:mysql://remotemysql.com:3306/ugTSd9ogRl</property>
+        <property name="connection.username">ugTSd9ogRl</property>
+        <property name="connection.password">1zsgTSrDSg</property>
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
 		
         <!-- Echo the SQL to console -->
