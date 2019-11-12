@@ -12,10 +12,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
- * @author ericknavarro ELLLLLLLLLL PROYECTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+ * @author ericknavarro
  */
 @Entity
 public class User {
@@ -37,18 +38,23 @@ public class User {
     private int puntos;
     @Column
     private String rango; //TODO: Definir tipo de rangos
-    /*@Column
+    @Column
+    @ManyToMany
     private List<Post> posts;
     @Column
+    @ManyToMany
     private List<User> follows;
     @Column
-    private List<User> followers;*/
+    @ManyToMany
+    private List<User> followers;
     @Column
     private Date fecha;
 
     public User() {
     }
 
+    
+    
     /**
      * @return the email
      */
@@ -173,6 +179,48 @@ public class User {
      */
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    /**
+     * @return the followers
+     */
+    public List<User> getFollowers() {
+        return followers;
+    }
+
+    /**
+     * @return the follows
+     */
+    public List<User> getFollows() {
+        return follows;
+    }
+
+    /**
+     * @return the posts
+     */
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    /**
+     * @param followers the followers to set
+     */
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
+    }
+
+    /**
+     * @param follows the follows to set
+     */
+    public void setFollows(List<User> follows) {
+        this.follows = follows;
+    }
+
+    /**
+     * @param posts the posts to set
+     */
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
     
     

@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -37,10 +39,12 @@ public class Post {
     private String ubicacion;
     @Column
     private String dificultad; //TODO: Definir dificultades
-    /*@Column
+    @Column
+    @ManyToMany
     private List<User> postulantes;
     @Column
-    private List<Comment> comentarios;*/
+    @OneToMany
+    private List<Comment> comentarios;
     @Column
     private Date fecha;
     @Column
