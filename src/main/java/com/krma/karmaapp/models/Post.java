@@ -5,7 +5,7 @@
  */
 package com.krma.karmaapp.models;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +32,7 @@ public class Post {
     /*@Column
     private User owner*/
     @Column
-    private int putnos;
+    private int puntos;
     @Column
     private String estado;
     @Column
@@ -55,6 +55,22 @@ public class Post {
     private String tags; //TODO: Definir tags
 
     public Post() {
+    }
+
+    public List<User> getPostulantes() {
+        return postulantes;
+    }
+
+    public void setPostulantes(List<User> postulantes) {
+        this.postulantes = postulantes;
+    }
+
+    public List<Comment> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comment> comentarios) {
+        this.comentarios = comentarios;
     }
 
     /**
@@ -100,10 +116,10 @@ public class Post {
     }
 
     /**
-     * @return the putnos
+     * @return the puntos
      */
-    public int getPutnos() {
-        return putnos;
+    public int getPuntos() {
+        return puntos;
     }
 
     /**
@@ -177,10 +193,10 @@ public class Post {
     }
 
     /**
-     * @param putnos the putnos to set
+     * @param puntos the puntos to set
      */
-    public void setPutnos(int putnos) {
-        this.putnos = putnos;
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
     }
 
     /**
