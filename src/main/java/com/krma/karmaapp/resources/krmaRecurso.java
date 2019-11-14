@@ -26,19 +26,11 @@ import org.hibernate.Session;
  */
 @Path("users")
 public class krmaRecurso {
-    
-    
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getInfo(){
-        return Response.status(Response.Status.OK).entity("{\"ijsdio\":\"ijdf\"}").build();
-    }
-             
    
      @GET
      @Path("{id}")
      @Produces(MediaType.APPLICATION_JSON)
-     public Response getUsersId(@PathParam("id") Integer id){
+     public Response getUsersById(@PathParam("id") Integer id){
             Map<String, Object> response = new HashMap<>();
             
             int codigo = -1;
@@ -47,18 +39,19 @@ public class krmaRecurso {
             Session session = null;
             List<User> lista = null;
             
-            //User user = null;
+            User user = null;
             
             try {
               // StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
              
              session = HibernateUtil.getSession();
              
-            // user = session.find(User.class, id);
+            user = session.find(User.class, id);
+            user.setPassword("");
              
              
-             Query query = session.createQuery("FROM users U", User.class);
-             lista = query.getResultList();
+            /*Query query = session.createQuery("FROM users U", User.class);
+             lista = query.getResultList();*/
              
              codigo = Response.Status.OK.getStatusCode();
              
@@ -76,14 +69,50 @@ public class krmaRecurso {
                 }
             }
             
-            response.put("data", lista);
+            response.put("data", user);
             response.put("mensaje", mensaje);
             
             return Response.status(codigo).entity(response).build();
      }
     
     
-    
+    @GET 
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUsers() {
+        Map<String, Object> response  = new HashMap<>();
+        
+        int codigo = -1;
+        String mensaje= "";
+        Session session = null;
+        List<User> lista = null;
+        
+        try {
+            session = HibernateUtil.getSession();
+            
+            Query query = session.createQuery("From users U", User.class);
+            lista = query.getResultList();
+            
+            codigo = Response.Status.OK.getStatusCode();
+            
+            mensaje = "Se obtuvieron los datos";
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            codigo = Response.Status.INTERNAL_SERVER_ERROR.getStatusCode();
+            mensaje = e.getMessage();
+        } finally {
+            if(session != null) {
+                session.close();
+            }
+        }
+        response.put("data", lista);
+        response.put("mensaje", mensaje);
+        
+        return Response.status(codigo).entity(response).build();
+        
+   
+     }
     
     
 }
