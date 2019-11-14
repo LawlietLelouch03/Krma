@@ -95,6 +95,20 @@ public class Post {
     }
 
     /**
+     * @return the owner
+     */
+    public User getOwner() {
+        return owner;
+    }
+
+    /**
+     * @param owner the owner to set
+     */
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    /**
      * @return the putnos
      */
     public int getPutnos() {
@@ -150,20 +164,18 @@ public class Post {
         this.dificultad = dificultad;
     }
 
-
-
     /**
-     * @return the fecha
+     * @return the fecha_creacion
      */
-    public Date getFecha() {
+    public Date getFecha_creacion() {
         return fecha_creacion;
     }
 
     /**
-     * @param fecha the fecha to set
+     * @param fecha_creacion the fecha_creacion to set
      */
-    public void setFecha(Date fecha) {
-        this.fecha_creacion = fecha;
+    public void setFecha_creacion(Date fecha_creacion) {
+        this.fecha_creacion = fecha_creacion;
     }
 
     /**
@@ -208,5 +220,6 @@ public class Post {
         this.tags = tags;
     }
 
+    
     
 }
