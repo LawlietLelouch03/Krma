@@ -6,7 +6,7 @@
 	
         <!-- JDBC properties -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://http://remotemysql.com:3306/ugTSd9ogRl</property>
+        <property name="connection.url">jdbc:mysql://remotemysql.com:3306/ugTSd9ogRl</property>
         <property name="connection.username">ugTSd9ogRl</property>
         <property name="connection.password">1zsgTSrDSg</property>
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
@@ -15,7 +15,10 @@
         <property name="show_sql">true</property>
         
         <!-- Mapeo de la clase -->
-        <mapping class="com.barbaro.apijuguete.Models.Juguete"/>
+        <mapping class="com.krma.karmaapp.models.User"/>
+        <mapping class="com.krma.karmaapp.models.Post"/>
+        <mapping class="com.krma.karmaapp.models.Comment"/>
+
         
     </session-factory>
         
