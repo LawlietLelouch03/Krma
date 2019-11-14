@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -29,8 +30,8 @@ public class Post {
     private String titulo;
     @Column
     private String descripcion;
-    /*@Column
-    private User owner*/
+    @OneToOne
+    private User owner;
     @Column
     private int putnos;
     @Column
@@ -40,11 +41,7 @@ public class Post {
     @Column
     private String dificultad; //TODO: Definir dificultades
     @Column
-    private List<User> postulantes;
-    @Column
-    private List<Comment> comentarios;
-    @Column
-    private Date fecha;
+    private Date fecha_creacion;
     @Column
     private Date deadLine;
     @Column
@@ -153,46 +150,20 @@ public class Post {
         this.dificultad = dificultad;
     }
 
-    /**
-     * @return the postulantes
-     */
-    public List<User> getPostulantes() {
-        return postulantes;
-    }
 
-    /**
-     * @param postulantes the postulantes to set
-     */
-    public void setPostulantes(List<User> postulantes) {
-        this.postulantes = postulantes;
-    }
-
-    /**
-     * @return the comentarios
-     */
-    public List<Comment> getComentarios() {
-        return comentarios;
-    }
-
-    /**
-     * @param comentarios the comentarios to set
-     */
-    public void setComentarios(List<Comment> comentarios) {
-        this.comentarios = comentarios;
-    }
 
     /**
      * @return the fecha
      */
     public Date getFecha() {
-        return fecha;
+        return fecha_creacion;
     }
 
     /**
      * @param fecha the fecha to set
      */
     public void setFecha(Date fecha) {
-        this.fecha = fecha;
+        this.fecha_creacion = fecha;
     }
 
     /**

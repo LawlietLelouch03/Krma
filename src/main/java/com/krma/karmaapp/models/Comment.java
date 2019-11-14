@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -22,9 +23,9 @@ public class Comment {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
-    @Column
+    @OneToOne
     private Post post;
-    @Column
+    @OneToOne
     private User autor;
     @Column
     private String contenido;

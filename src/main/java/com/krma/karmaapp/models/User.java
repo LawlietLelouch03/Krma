@@ -27,26 +27,18 @@ public class User {
     @Column
     private String nombre;
     @Column
-    private String userName;
+    private String username;
     @Column
     private String password;
     @Column
     private String email;
     @Column
-    private String profile_Picture;
+    private String profile_picture;
     @Column
     private int puntos;
     @Column
     private String rango; //TODO: Definir tipo de rangos
-    /*@Column
-    @ManyToMany
-    private List<Post> posts;
-    @Column
-    @ManyToMany
-    private List<User> follows;
-    @Column
-    @ManyToMany
-    private List<User> followers;*/
+  
     @Column
     private Date fecha_creacion;
 
@@ -84,15 +76,15 @@ public class User {
     /**
      * @return the userName
      */
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     /**
      * @param userName the userName to set
      */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     /**
@@ -126,15 +118,15 @@ public class User {
     /**
      * @return the profile_Picture
      */
-    public String getProfile_Picture() {
-        return profile_Picture;
+    public String getProfile_picture() {
+        return profile_picture;
     }
 
     /**
      * @param profile_Picture the profile_Picture to set
      */
-    public void setProfile_Picture(String profile_Picture) {
-        this.profile_Picture = profile_Picture;
+    public void setProfile_picture(String profile_Picture) {
+        this.profile_picture = profile_Picture;
     }
 
     /**
