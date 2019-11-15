@@ -18,6 +18,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -50,13 +52,28 @@ public class User {
            inverseJoinColumns = { @JoinColumn(name = "follower") })
     private Set<User> followers = new HashSet<>();
     
- 
+     @OneToMany(fetch= FetchType.EAGER)
+     @JoinTable(name ="users_posts",
+             joinColumns = {@JoinColumn(name="user_id") },
+             inverseJoinColumns = {@JoinColumn(name ="post_id") })
+    private Set<Post> posts = new HashSet<>();
+     
     
     @Column
     private Date fecha_creacion;
 
     public User() {
     }
+
+    public Set<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(Set<Post> posts) {
+        this.posts = posts;
+    }
+    
+    
     
     public Set<User> getFollowers() {
         return followers;
