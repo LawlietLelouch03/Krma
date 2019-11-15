@@ -11,13 +11,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
  *
  * @author ericknavarro
  */
-@Entity(name = "Posts")
+@Entity(name = "posts")
 public class Post {
     
     @Id
@@ -27,10 +29,9 @@ public class Post {
     private String titulo;
     @Column
     private String descripcion;
-    @OneToOne
-    private User owner;
+ 
     @Column
-    private int putnos;
+    private int puntos;
     @Column
     private String estado;
     @Column
@@ -91,32 +92,20 @@ public class Post {
         this.descripcion = descripcion;
     }
 
-    /**
-     * @return the owner
-     */
-    public User getOwner() {
-        return owner;
-    }
-
-    /**
-     * @param owner the owner to set
-     */
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
+ 
 
     /**
      * @return the putnos
      */
-    public int getPutnos() {
-        return putnos;
+    public int getPuntos() {
+        return puntos;
     }
 
     /**
      * @param putnos the putnos to set
      */
-    public void setPutnos(int putnos) {
-        this.putnos = putnos;
+    public void setPuntos(int putnos) {
+        this.puntos = putnos;
     }
 
     /**
