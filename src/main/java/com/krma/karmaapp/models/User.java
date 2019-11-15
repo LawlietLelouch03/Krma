@@ -6,12 +6,17 @@
 package com.krma.karmaapp.models;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 /**
@@ -38,11 +43,27 @@ public class User {
     private int puntos;
     @Column
     private String rango; //TODO: Definir tipo de rangos
-  
+    
+     @ManyToMany(fetch= FetchType.EAGER)
+    @JoinTable(name = "users_follows",
+           joinColumns = { @JoinColumn(name = "user_id") },
+           inverseJoinColumns = { @JoinColumn(name = "follower") })
+    private Set<User> followers = new HashSet<>();
+    
+ 
+    
     @Column
     private Date fecha_creacion;
 
     public User() {
+    }
+    
+    public Set<User> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Set<User> followers) {
+        this.followers = followers;
     }
 
     /**

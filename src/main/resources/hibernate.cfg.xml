@@ -15,6 +15,7 @@
         <property name="show_sql">true</property>
         
         <!-- Mapeo de la clase -->
+        
         <mapping class="com.krma.karmaapp.models.User"/>
         <mapping class="com.krma.karmaapp.models.Post"/>
         <mapping class="com.krma.karmaapp.models.Comment"/>
