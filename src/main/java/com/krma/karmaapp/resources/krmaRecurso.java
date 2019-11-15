@@ -194,7 +194,13 @@ public class krmaRecurso {
 
             if (userUpdated != null) {
                 tx = session.beginTransaction();
-
+                
+                
+                userUpdated.setRango(user.getRango());
+                userUpdated.setNombre(user.getNombre());
+                userUpdated.setFollowers(user.getFollowers());
+                userUpdated.setEmail(user.getEmail());
+                userUpdated.setPuntos(user.getPuntos());
                 userUpdated.setPassword(user.getPassword());
                 userUpdated.setProfile_picture(user.getProfile_picture());
                 userUpdated.setUsername(user.getUsername());
