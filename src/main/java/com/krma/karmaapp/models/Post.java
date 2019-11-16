@@ -5,7 +5,7 @@
  */
 package com.krma.karmaapp.models;
 
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,10 +43,14 @@ public class Post {
     @Column
     private Date deadLine;
     @Column
-    private String tiempo; //TODO: Definir tipo de dato de timpo
+    private int tiempo; //TODO: Definir tipo de dato de timpo
     @Column
     private String tags; //TODO: Definir tags
 
+    
+    
+    
+    
     public Post() {
     }
 
@@ -181,14 +185,14 @@ public class Post {
     /**
      * @return the tiempo
      */
-    public String getTiempo() {
+    public int getTiempo() {
         return tiempo;
     }
 
     /**
      * @param tiempo the tiempo to set
      */
-    public void setTiempo(String tiempo) {
+    public void setTiempo(int tiempo) {
         this.tiempo = tiempo;
     }
 
