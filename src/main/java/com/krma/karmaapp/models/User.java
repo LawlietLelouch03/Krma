@@ -46,14 +46,14 @@ public class User {
     @Column
     private String rango; //TODO: Definir tipo de rangos
     
-     @ManyToMany(fetch= FetchType.EAGER)
+    @ManyToMany(fetch= FetchType.EAGER)
     @JoinTable(name = "users_follows",
            joinColumns = { @JoinColumn(name = "user_id") },
            inverseJoinColumns = { @JoinColumn(name = "follower") })
     private Set<User> followers = new HashSet<>();
     
-     @OneToMany(fetch= FetchType.EAGER)
-     @JoinTable(name ="users_posts",
+    @OneToMany(fetch= FetchType.EAGER)
+    @JoinTable(name ="users_posts",
              joinColumns = {@JoinColumn(name="user_id") },
              inverseJoinColumns = {@JoinColumn(name ="post_id") })
     private Set<Post> posts = new HashSet<>();

@@ -29,7 +29,6 @@ public class Post {
     private String titulo;
     @Column
     private String descripcion;
- 
     @Column
     private int puntos;
     @Column
