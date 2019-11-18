@@ -13,10 +13,12 @@ import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -90,7 +92,7 @@ public class CommentRecurso {
             
             tx = session.beginTransaction();
             
-            comment.setFecha((java.sql.Date) new Date()); 
+            comment.setFecha(new Date()); 
             session.save(comment); 
             tx.commit();
            
@@ -123,5 +125,125 @@ public class CommentRecurso {
         return Response.status(codigo).entity(response).build();
     
     }
+    
+    
+    @PUT
+    @Path("{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateComment(@PathParam("id") Integer id, Comment comment){
+    
+        Session session = null;
+        Transaction tx = null;
+        Map<String, Object> response = null;
+
+        int status = Response.Status.INTERNAL_SERVER_ERROR.getStatusCode();
+        int codigoInt = 0;
+        String mensaje = null;
+
+        Comment commentUpdate = null;
+
+        try {
+            session = HibernateUtil.getSession();
+
+            commentUpdate = session.find(Comment.class, id);
+
+            if (commentUpdate != null) {
+                tx = session.beginTransaction();
+                
+                commentUpdate.setContenido(comment.getContenido());
+
+                session.update(commentUpdate);
+                tx.commit();
+
+                status = Response.Status.OK.getStatusCode();
+                mensaje = "Se actualizo el recurso";
+                codigoInt = 1;
+            } else {
+                status = Response.Status.NOT_FOUND.getStatusCode();
+                mensaje = "Recurso no encontrado";
+
+            }
+
+        } catch (TransactionException e) {
+            e.printStackTrace();
+            mensaje = "Error en la transaccion";
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            mensaje = "Error en la base de datos";
+        } catch (Exception e) {
+            e.printStackTrace();
+            mensaje = "Error, consulta mas tarde";
+        } finally {
+            if (session != null) {
+                HibernateUtil.closeSession(session);
+
+            }
+        }
+        response = new HashMap<>();
+        response.put("codigo", codigoInt);
+        response.put("mensaje", mensaje);
+        response.put("data", commentUpdate);
+
+        // Construir la respuesta
+        return Response.status(status).entity(response).build();
+    
+    }
+    
+    @DELETE
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteComment(@PathParam("id") Integer id){
+        
+        Session session = null;
+        // ACID
+        Transaction tx = null;
+        Comment comment = null;
+
+        Map<String, Object> response = null;
+        int status = Response.Status.INTERNAL_SERVER_ERROR.getStatusCode();
+        int codigo = 0;
+        String mensaje = null;
+
+        try {
+
+            session = HibernateUtil.getSession();
+            // Llevar de tarea get, load, find
+            comment = session.get(Comment.class, id);
+            if (comment != null) {
+                tx = session.beginTransaction();
+                session.remove(comment);
+                tx.commit();
+
+                mensaje = "Recurso eliminado";
+                status = Response.Status.OK.getStatusCode();
+            } else {
+                status = Response.Status.NOT_FOUND.getStatusCode();
+                mensaje = "Recurso no encontado";
+            }
+        } catch (TransactionException e) {
+            e.printStackTrace();
+            mensaje = "Error en la transacción";
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            mensaje = "Error con la base de datos";
+        } catch (Exception e) {
+            e.printStackTrace();
+            mensaje = "Error, consulta mas tarde";
+        } finally {
+            if (session != null) {
+                HibernateUtil.closeSession(session);;
+            }
+        }
+
+        response = new HashMap<>();
+        response.put("codigo", codigo);
+        response.put("mensaje", mensaje);
+        response.put("data", null);
+
+        return Response.status(status).entity(response).build();
+    
+    }
+    
     
 }
