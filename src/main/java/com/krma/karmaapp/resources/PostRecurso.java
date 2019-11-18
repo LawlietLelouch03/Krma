@@ -32,9 +32,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.TransactionException;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 /**
  *
@@ -104,14 +101,7 @@ public class PostRecurso {
 
             session = HibernateUtil.getSession();//1
             tx = session.beginTransaction();//2
-
-            // save
-            // saveOrUpdate
-            // update
-            // delete
-            // persist
-            // merge
-            // detached
+            
             post.setFecha_creacion(new Date()); //!3
             session.save(post); //4
             tx.commit();// 5
