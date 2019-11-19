@@ -6,7 +6,10 @@
 package com.krma.karmaapp.resources;
 
 import com.krma.hibernateUtil.HibernateUtil;
+import com.krma.karmaapp.models.Post;
 import com.krma.karmaapp.models.User;
+import com.krma.karmaapp.models.users_follows;
+import com.krma.karmaapp.models.users_posts;
 import java.util.Date;
 
 import java.util.HashMap;
@@ -294,6 +297,131 @@ public class UserRecurso {
         response.put("data", null);
 
         return Response.status(status).entity(response).build();
+    }
+    
+    
+    @POST
+    @Path("{id}/posts")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createPost(@PathParam("id") Integer id, Post post) {
+
+        Session session = null;
+        Transaction tx = null;
+        
+        users_posts users_posts = new users_posts();
+
+        Map<String, Object> response = null;
+
+        // HTTP
+        int codigo = Response.Status.INTERNAL_SERVER_ERROR.getStatusCode();
+
+        int codigoInt = 0;
+        String mensaje = null;
+        try {
+
+            session = HibernateUtil.getSession();
+            tx = session.beginTransaction();
+            
+            post.setFecha_creacion(new Date()); 
+            
+            users_posts.setPost_id((int) session.save(post));
+            System.out.println((int) session.save(post));
+            
+            users_posts.setUser_id(id);
+            
+            session.save(users_posts);
+            
+            tx.commit();// 5
+
+            // Asignar datos de respuesta
+            codigo = Response.Status.CREATED.getStatusCode();
+            codigoInt = 1; // La operacion sucedio
+            mensaje = "Se almaceno el post";
+
+        } catch (TransactionException e) {
+            if (tx != null) {
+                tx.rollback(); // deshacer la operacion con la bd
+            }
+            mensaje = "Fallo en la transacción";
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            mensaje = "Error en el servidor";
+        } catch (Exception e) {
+            e.printStackTrace();
+            mensaje = "Error";
+        } finally {
+            if (session != null) {
+                HibernateUtil.closeSession(session);
+            }
+        }
+
+        response = new HashMap<>();
+        response.put("codigo", codigoInt);
+        response.put("mensaje", mensaje);
+        response.put("data", post);
+
+        return Response.status(codigo).entity(response).build();
+    }
+    
+    @POST
+    @Path("{id_follower}/follow/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response setFollow(@PathParam("id_follower") Integer id_follower, @PathParam("id") Integer id){
+    
+        Session session = null;
+        Transaction tx = null;
+        
+        users_follows users_follows = new users_follows();
+
+        Map<String, Object> response = null;
+
+        // HTTP
+        int codigo = Response.Status.INTERNAL_SERVER_ERROR.getStatusCode();
+
+        int codigoInt = 0;
+        String mensaje = null;
+        try {
+
+            session = HibernateUtil.getSession();
+            tx = session.beginTransaction();
+            
+            users_follows.setFollower(id_follower);
+            users_follows.setUser_id(id);
+            
+            session.save(users_follows);
+            
+            tx.commit();// 5
+
+            // Asignar datos de respuesta
+            codigo = Response.Status.CREATED.getStatusCode();
+            codigoInt = 1; // La operacion sucedio
+            mensaje = "Se almaceno el follow";
+
+        } catch (TransactionException e) {
+            if (tx != null) {
+                tx.rollback(); // deshacer la operacion con la bd
+            }
+            mensaje = "Fallo en la transacción";
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            mensaje = "Error en el servidor";
+        } catch (Exception e) {
+            e.printStackTrace();
+            mensaje = "Error";
+        } finally {
+            if (session != null) {
+                HibernateUtil.closeSession(session);
+            }
+        }
+
+        response = new HashMap<>();
+        response.put("codigo", codigoInt);
+        response.put("mensaje", mensaje);
+        response.put("data", null);
+
+        return Response.status(codigo).entity(response).build();
+    
     }
 
 }

@@ -94,7 +94,6 @@ public class PostRecurso {
         // HTTP
         int codigo = Response.Status.INTERNAL_SERVER_ERROR.getStatusCode();
 
-        // Interno, notificar algun error de la logica
         int codigoInt = 0;
         String mensaje = null;
         try {
@@ -104,6 +103,7 @@ public class PostRecurso {
             
             post.setFecha_creacion(new Date()); //!3
             session.save(post); //4
+            
             tx.commit();// 5
 
             // Asignar datos de respuesta
@@ -136,7 +136,6 @@ public class PostRecurso {
         return Response.status(codigo).entity(response).build();
     }
 
-    // Modificar post por id 
     @PUT
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -169,7 +168,6 @@ public class PostRecurso {
                 postDB.setEstado(post.getEstado());
                 postDB.setUbicacion(post.getUbicacion());
                 postDB.setDificultad(post.getDificultad());
-            
                 
                 postDB.setDeadLine(post.getDeadLine());
                 postDB.setTiempo(post.getTiempo());

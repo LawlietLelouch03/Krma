@@ -11,9 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -46,13 +43,18 @@ public class Post {
     @Column
     private String tags; //TODO: Definir tags
 
-    
-    
+    /*@ManyToMany(fetch= FetchType.EAGER)
+    @JoinTable(name = "users_posts",
+           joinColumns = { @JoinColumn(name = "user_id") },
+           inverseJoinColumns = { @JoinColumn(name = "post_id") })
+    private Set<User> posts = new HashSet<>();*/
     
     
     public Post() {
     }
 
+    
+    
     /**
      * @return the id
      */
@@ -208,6 +210,20 @@ public class Post {
     public void setTags(String tags) {
         this.tags = tags;
     }
+
+    /**
+     * @return the posts
+     */
+    /*public Set<User> getPosts() {
+        return posts;
+    }
+
+    /**
+     * @param posts the posts to set
+     *
+    public void setPosts(Set<User> posts) {
+        this.posts = posts;
+    }*/
 
     
     

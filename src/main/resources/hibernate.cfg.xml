@@ -19,6 +19,8 @@
         <mapping class="com.krma.karmaapp.models.User"/>
         <mapping class="com.krma.karmaapp.models.Post"/>
         <mapping class="com.krma.karmaapp.models.Comment"/>
+        <mapping class="com.krma.karmaapp.models.users_posts"/>
+        <mapping class="com.krma.karmaapp.models.users_follows"/>
 
         
     </session-factory>

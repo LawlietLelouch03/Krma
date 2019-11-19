@@ -24,7 +24,7 @@ public class users_follows {
     @Column
     private int user_id;
     @Column
-    private String follower;
+    private int follower;
 
     public int getId() {
         return id;
@@ -42,11 +42,11 @@ public class users_follows {
         this.user_id = user_id;
     }
 
-    public String getFollower() {
+    public int getFollower() {
         return follower;
     }
 
-    public void setFollower(String follower) {
+    public void setFollower(int follower) {
         this.follower = follower;
     }
     
