@@ -6,25 +6,21 @@
 package com.krma.karmaapp.models;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author ericknavarro
  */
-@Entity(name = "users")
-public class User {
+
+@Entity(name = "simpleusers")
+@Table(name = "users")
+public class SimpleUser {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,42 +39,12 @@ public class User {
     private int puntos;
     @Column
     private String rango; //TODO: Definir tipo de rangos
-    
-    @ManyToMany(fetch= FetchType.EAGER)
-    @JoinTable(name = "users_follows",
-           joinColumns = { @JoinColumn(name = "user_id") },
-           inverseJoinColumns = { @JoinColumn(name = "follower") })
-    private Set<SimpleUser> followers = new HashSet<>();
-    
-    @OneToMany(fetch= FetchType.EAGER)
-    @JoinTable(name ="users_posts",
-             joinColumns = {@JoinColumn(name="user_id") },
-             inverseJoinColumns = {@JoinColumn(name ="post_id") })
-    private Set<Post> posts = new HashSet<>();
-     
-    
     @Column
     private Date fecha_creacion;
 
-    public User() {
-    }
-
-    public Set<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(Set<Post> posts) {
-        this.posts = posts;
+    public SimpleUser() {
     }
     
-    public Set<SimpleUser> getFollowers() {
-        return followers;
-    }
-
-    public void setFollowers(Set<SimpleUser> followers) {
-        this.followers = followers;
-    }
-
     /**
      * @return the id
      */
@@ -205,6 +171,4 @@ public class User {
         this.fecha_creacion = fecha_creacion;
     }
     
-    
-
 }

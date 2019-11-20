@@ -6,7 +6,10 @@
 package com.krma.karmaapp.resources;
 
 import com.krma.hibernateUtil.HibernateUtil;
+import com.krma.karmaapp.models.Comment;
 import com.krma.karmaapp.models.Post;
+import com.krma.karmaapp.models.SimplePost;
+import com.krma.karmaapp.models.SimpleUser;
 import com.krma.karmaapp.models.User;
 import com.krma.karmaapp.models.users_follows;
 import com.krma.karmaapp.models.users_posts;
@@ -423,5 +426,5 @@ public class UserRecurso {
         return Response.status(codigo).entity(response).build();
     
     }
-
+    
 }

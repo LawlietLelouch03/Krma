@@ -72,6 +72,45 @@ public class CommentRecurso {
         return Response.status(status).entity(response).build();
     }
     
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCommentsById(@PathParam("id") Integer id){
+         
+        int status = 0;
+        String mensaje = null;
+        Session session = null;
+        List<Comment> comments = null;
+    
+        Map<String, Object> response = new HashMap<>();
+    
+        try {
+            
+            session = HibernateUtil.getSession();
+            
+            Query query = session.createQuery("FROM comments where post ="+id, Comment.class);
+            
+            comments = query.getResultList();
+            
+            status = Response.Status.OK.getStatusCode();
+            
+            mensaje = "Se obtuvieron los comentarios";
+            
+        } catch (Exception e) {
+            status = Response.Status.OK.getStatusCode();
+            mensaje = e.getMessage();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        
+        response.put("data", comments);
+        response.put("mensaje", mensaje);
+        
+        return Response.status(status).entity(response).build();
+    }
+    
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

@@ -25,16 +25,14 @@ public class Comment {
     private int id;
     @OneToOne
     @JoinColumn(name = "post")
-    private Post post;
+    private SimplePost post;
     @OneToOne
     @JoinColumn(name = "autor")
-    private User autor;
+    private SimpleUser autor;
     @Column
     private String contenido;
     @Column
     private Date fecha;
-
-    
     
     public Comment() {
     }
@@ -42,7 +40,7 @@ public class Comment {
     /**
      * @return the autor
      */
-    public User getAutor() {
+    public SimpleUser getAutor() {
         return autor;
     }
 
@@ -70,14 +68,14 @@ public class Comment {
     /**
      * @return the post
      */
-    public Post getPost() {
+    public SimplePost getPost() {
         return post;
     }
 
     /**
      * @param autor the autor to set
      */
-    public void setAutor(User autor) {
+    public void setAutor(SimpleUser autor) {
         this.autor = autor;
     }
 
@@ -105,7 +103,7 @@ public class Comment {
     /**
      * @param post the post to set
      */
-    public void setPost(Post post) {
+    public void setPost(SimplePost post) {
         this.post = post;
     }
     

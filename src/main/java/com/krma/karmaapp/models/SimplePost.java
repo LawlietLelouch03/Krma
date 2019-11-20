@@ -6,26 +6,20 @@
 package com.krma.karmaapp.models;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author ericknavarro
  */
-@Entity(name = "posts")
-public class Post {
+@Entity(name = "simplepost")
+@Table(name = "posts")
+public class SimplePost {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,16 +44,6 @@ public class Post {
     private int tiempo; //TODO: Definir tipo de dato de timpo
     @Column
     private String tags; //TODO: Definir tags
-    
-    /* Un posts tienen 1 usuario*/
-    @OneToOne(fetch= FetchType.EAGER)
-    @JoinTable(name = "users_posts",
-           joinColumns = { @JoinColumn(name = "post_id") },
-           inverseJoinColumns = { @JoinColumn(name = "user_id") })
-    private SimpleUser autor;
-    
-    public Post() {
-    }
     
     /**
      * @return the id
@@ -102,6 +86,8 @@ public class Post {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+ 
 
     /**
      * @return the putnos
@@ -213,20 +199,6 @@ public class Post {
      */
     public void setTags(String tags) {
         this.tags = tags;
-    }
-
-    /**
-     * @return the autor
-     */
-    public SimpleUser getAutor() {
-        return autor;
-    }
-
-    /**
-     * @param autor the autor to set
-     */
-    public void setAutor(SimpleUser autor) {
-        this.autor = autor;
     }
     
 }
