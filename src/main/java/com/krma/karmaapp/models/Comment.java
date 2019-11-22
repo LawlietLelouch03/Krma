@@ -5,6 +5,7 @@
  */
 package com.krma.karmaapp.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.time.OffsetDateTime;
+import org.hibernate.annotations.Type;
 
 /**
  *
@@ -31,6 +36,7 @@ public class Comment {
     private SimpleUser autor;
     @Column
     private String contenido;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column
     private Date fecha;
     

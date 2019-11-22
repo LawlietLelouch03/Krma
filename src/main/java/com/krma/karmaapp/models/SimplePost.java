@@ -5,6 +5,7 @@
  */
 package com.krma.karmaapp.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,8 +37,10 @@ public class SimplePost {
     private String ubicacion;
     @Column
     private String dificultad; //TODO: Definir dificultades
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column
     private Date fecha_creacion;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column
     private Date deadLine;
     @Column

@@ -5,6 +5,7 @@
  */
 package com.krma.karmaapp.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,6 +40,7 @@ public class SimpleUser {
     private int puntos;
     @Column
     private String rango; //TODO: Definir tipo de rangos
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column
     private Date fecha_creacion;
 
